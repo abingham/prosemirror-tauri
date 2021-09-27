@@ -1,0 +1,20 @@
+<!--
+  This is the template for the top-level HTML structure of the project.
+
+  This should be as small as possible. Really, it should just define the elements
+  needed for other bits of HTML to be injected.
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Prosemirror-tauri</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>

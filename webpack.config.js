@@ -29,8 +29,12 @@ module.exports = {
     },
     mode: "development",
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Prosemirror-tauri'
-        })
-    ]
+         new HtmlWebpackPlugin({
+             title: 'Prosemirror-tauri',
+             template: "./src/index.html_template",
+             // inject: true,
+             // chunks: ['index'],
+             filename: 'index.html',
+         })
+     ]
 }

@@ -6,14 +6,14 @@ import { addListNodes } from "prosemirror-schema-list"
 import { exampleSetup } from "prosemirror-example-setup"
 
 import "./prosemirror/editor.css";
-// import "./prosemirror/prosemirror.js";
+import "./prosemirror/prosemirror.js";
 import "./style.css";
 import editor from "./editor.html";
 
-// Inject out HTML into the body.
-const bodies = document.getElementsByTagName('body');
-bodies[0].innerHTML = editor;
-console.log(bodies[0])
+
+// Inject out HTML into the root.
+const rootElement = document.getElementById('root');
+rootElement.innerHTML = editor;
 
 // Mix the nodes from prosemirror-schema-list into the basic schema to
 // create a schema with list support.
