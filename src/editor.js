@@ -9,6 +9,7 @@ const DOMParser = PM.model.DOMParser;
 const DOMSerializer = PM.model.DOMSerializer;
 const exampleSetup = PM.example_setup.exampleSetup;
 const fs = window.__TAURI__.fs;
+const dialog = window.__TAURI__.dialog;
 
 const mySchema = new Schema({
   nodes: addListNodes(schema.spec.nodes, "paragraph block*", "block"),
@@ -23,6 +24,18 @@ window.view = new EditorView(document.querySelector("#editor"), {
 });
 
 function saveButtonClicked() {
+  dialog.save({}).then((filename) => {
+    fs.writeFile({
+      contents: getXMLString(),
+      path: filename
+    },
+    {})
+  }).catch(err => {
+    console.log(err);
+  });
+}
+
+function getXMLString() {
   const serialized = DOMSerializer.fromSchema(mySchema).serializeFragment(window.view.state.doc.content);
   const doc = document.implementation.createDocument('http://www.w3.org/1999/xhtml', 'main');
   doc.documentElement.appendChild(serialized);
@@ -31,16 +44,7 @@ function saveButtonClicked() {
       'version="1.0" encoding="utf-8" standalone="yes"'), doc.documentElement);
 
   const xmlSerializer = new XMLSerializer();
-  const xmlData = xmlSerializer.serializeToString(doc); 
-
-  const file = {
-    contents: xmlData,
-    path: "deleteme.txt"
-  };
-
-  const options = { };
-
-  fs.writeFile(file, options);
+  return xmlSerializer.serializeToString(doc); 
 }
 
 export { saveButtonClicked }
