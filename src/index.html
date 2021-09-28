@@ -41,8 +41,9 @@
   </div>
   <script src="prosemirror/prosemirror.js"></script>
   <script type="module">
-    import {saveButtonClicked} from "./editor.js";
+    import {saveButtonClicked, loadButtonClicked} from "./editor.js";
     document.getElementById('save-button').addEventListener('click',  saveButtonClicked);
+    document.getElementById('load-button').addEventListener('click',  loadButtonClicked);
   </script>
 </body>
 
