@@ -6,6 +6,7 @@ const Schema = PM.model.Schema;
 const EditorView = PM.view.EditorView;
 const EditorState = PM.state.EditorState;
 const DOMParser = PM.model.DOMParser;
+const DOMSerializer = PM.model.DOMSerializer;
 const exampleSetup = PM.example_setup.exampleSetup;
 const fs = window.__TAURI__.fs;
 
@@ -22,8 +23,18 @@ window.view = new EditorView(document.querySelector("#editor"), {
 });
 
 function saveButtonClicked() {
+  const serialized = DOMSerializer.fromSchema(mySchema).serializeFragment(window.view.state.doc.content);
+  const doc = document.implementation.createDocument('http://www.w3.org/1999/xhtml', 'main');
+  doc.documentElement.appendChild(serialized);
+  doc.insertBefore(doc.createProcessingInstruction(
+      'xml',
+      'version="1.0" encoding="utf-8" standalone="yes"'), doc.documentElement);
+
+  const xmlSerializer = new XMLSerializer();
+  const xmlData = xmlSerializer.serializeToString(doc); 
+
   const file = {
-    contents: "contents",
+    contents: xmlData,
     path: "deleteme.txt"
   };
 
