@@ -7,7 +7,8 @@
     "distDir": "../src",
     "devPath": "../src",
     "beforeDevCommand": "",
-    "beforeBuildCommand": ""
+    "beforeBuildCommand": "",
+    "withGlobalTauri": true
   },
   "tauri": {
     "bundle": {

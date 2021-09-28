@@ -7,6 +7,7 @@ const EditorView = PM.view.EditorView;
 const EditorState = PM.state.EditorState;
 const DOMParser = PM.model.DOMParser;
 const exampleSetup = PM.example_setup.exampleSetup;
+const fs = window.__TAURI__.fs;
 
 const mySchema = new Schema({
   nodes: addListNodes(schema.spec.nodes, "paragraph block*", "block"),
@@ -21,7 +22,14 @@ window.view = new EditorView(document.querySelector("#editor"), {
 });
 
 function saveButtonClicked() {
-  console.log("save clicked");
+  const file = {
+    contents: "contents",
+    path: "deleteme.txt"
+  };
+
+  const options = { };
+
+  fs.writeFile(file, options);
 }
 
 export { saveButtonClicked }
