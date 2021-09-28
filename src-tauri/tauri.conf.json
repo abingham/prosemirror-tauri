@@ -4,8 +4,8 @@
     "version": "0.1.0"
   },
   "build": {
-    "distDir": "../dist",
-    "devPath": "../dist",
+    "distDir": "../src",
+    "devPath": "../src",
     "beforeDevCommand": "",
     "beforeBuildCommand": ""
   },

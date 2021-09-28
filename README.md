@@ -14,11 +14,6 @@ First install the node deps:
 npm install
 ```
 
-Then build the UI distribution:
-```
-npm run build
-```
-
 The next step is to build the Tauri application. To do this you'll need to [install
 Tauri](https://tauri.studio/en/docs/getting-started/intro). With that in place you can build and run the
 application with:
@@ -40,8 +35,8 @@ In both cases, the executable is in `src-tauri/target/{debug,release}/app`.
 ### Rust/tauri code
 
 The Rust code lives in `src-tauri`. Right now this is completely unchanged from what Tauri's 'quick start'
-tool produced. The `tauri.conf.json` files configures it, and the most important part of this file is probably the `build/distDir` setting which tells Tauri where the web-based UI stuff lives (i.e. the `dist` directory).
+tool produced. The `tauri.conf.json` files configures it, and the most important part of this file is probably the `build/distDir` setting which tells Tauri where the web-based UI stuff lives (i.e. the `src` directory).
 
 ### HTML/JS/CSS stuff
 
-The web UI is straight HTML/CSS/JS, bundled with [webpack](https://webpack.js.org/). When you build the UI stuff, it's bundled into the `dist` directory where Tauri looks for it. So remember to re-bundle your UI stuff before building the Tauri app.
+The web/UI stuff is straightforward HTML/CSS/javascript. We're not (yet) using a bundler or framework. It's all in the `src` directory.
