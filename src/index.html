@@ -18,8 +18,8 @@
 <body>
   <h1>💖 Hello, World!</h1>
   <p>Welcome to your Electron application.</p>
-  <button onclick="saveButtonClicked()">Save</button>
-  <button onclick="loadButtonClicked()">Load</button>
+  <button id="save-button">Save</button>
+  <button id="load-button">Load</button>
   <div id=editor style="margin-bottom: 23px"></div>
   <div style="display: none" id="content">
     <h3>Hello ProseMirror</h3>
@@ -40,7 +40,10 @@
       a numbered list.</p>
   </div>
   <script src="prosemirror/prosemirror.js"></script>
-  <script type="module" src="editor.js"></script>
+  <script type="module">
+    import {saveButtonClicked} from "./editor.js";
+    document.getElementById('save-button').addEventListener('click',  saveButtonClicked);
+  </script>
 </body>
 
 </html>
