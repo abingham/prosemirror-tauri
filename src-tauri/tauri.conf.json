@@ -50,7 +50,14 @@
       "active": false
     },
     "allowlist": {
-      "all": true
+      "fs": {
+        "readTextFile": true,
+        "writeFile": true
+      },
+      "dialog" : {
+        "open": true,
+        "save": true
+      }
     },
     "windows": [
       {
