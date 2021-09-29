@@ -18,8 +18,6 @@
 <body>
   <h1>💖 Hello, World!</h1>
   <p>Welcome to your Electron application.</p>
-  <button id="save-button">Save</button>
-  <button id="load-button">Load</button>
   <div id=editor style="margin-bottom: 23px"></div>
   <div style="display: none" id="content">
     <h3>Hello ProseMirror</h3>
@@ -41,9 +39,7 @@
   </div>
   <script src="prosemirror/prosemirror.js"></script>
   <script type="module">
-    import {saveButtonClicked, loadButtonClicked} from "./editor.js";
-    document.getElementById('save-button').addEventListener('click',  saveButtonClicked);
-    document.getElementById('load-button').addEventListener('click',  loadButtonClicked);
+    import "./editor.js";
   </script>
 </body>
 

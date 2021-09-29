@@ -24,7 +24,7 @@ window.view = new EditorView(document.querySelector("#editor"), {
   })
 });
 
-function loadButtonClicked() {
+function loadRequested() {
   dialog.open({
     directory: false,
     multiple: false
@@ -45,7 +45,7 @@ function loadButtonClicked() {
     })
 }
 
-function saveButtonClicked() {
+function saveRequested() {
   dialog.save({}).then((filename) => {
     fs.writeFile({
       contents: getXMLString(),
@@ -69,8 +69,13 @@ function getXMLString() {
   return xmlSerializer.serializeToString(doc);
 }
 
-event.listen('load', e => {
-  loadButtonClicked()
+event.listen('load', _ => {
+  loadRequested()
 });
 
-export { saveButtonClicked, loadButtonClicked }
+event.listen('save', _ => {
+  saveRequested()
+});
+
+
+export { }
