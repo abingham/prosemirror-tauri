@@ -10,6 +10,7 @@ const DOMSerializer = PM.model.DOMSerializer;
 const exampleSetup = PM.example_setup.exampleSetup;
 const fs = window.__TAURI__.fs;
 const dialog = window.__TAURI__.dialog;
+const event = window.__TAURI__.event;
 
 const mySchema = new Schema({
   nodes: addListNodes(schema.spec.nodes, "paragraph block*", "block"),
@@ -30,18 +31,18 @@ function loadButtonClicked() {
   }).then(filename => {
     return fs.readTextFile(filename, {})
   }).then(xmlData => {
-      const parser = new DOMParser();
-      const dom = parser.parseFromString(xmlData, 'application/xml');
-      // TODO: merge the new state into the old one
-      const newState = EditorState.create({
-        doc: PMDOMParser.fromSchema(mySchema).parse(dom),
-        plugins: exampleSetup({ schema: mySchema }),
-      });
-      window.view.updateState(newState);
+    const parser = new DOMParser();
+    const dom = parser.parseFromString(xmlData, 'application/xml');
+    // TODO: merge the new state into the old one
+    const newState = EditorState.create({
+      doc: PMDOMParser.fromSchema(mySchema).parse(dom),
+      plugins: exampleSetup({ schema: mySchema }),
+    });
+    window.view.updateState(newState);
   })
-  .catch(err => {
-    console.log(err);
-  })
+    .catch(err => {
+      console.log(err);
+    })
 }
 
 function saveButtonClicked() {
@@ -67,5 +68,9 @@ function getXMLString() {
   const xmlSerializer = new XMLSerializer();
   return xmlSerializer.serializeToString(doc);
 }
+
+event.listen('load', e => {
+  loadButtonClicked()
+});
 
 export { saveButtonClicked, loadButtonClicked }
